@@ -7,11 +7,15 @@ UCLASS(minimalapi)
 class ASNEGameMode : public AGameMode
 {
 	GENERATED_BODY()
-
+	virtual void StartPlay() override;
 public:
 	ASNEGameMode(const FObjectInitializer& ObjectInitializer);
-	static FVector* SpawnLoc;
-	static FRotator* SpawnRot;
+	static FVector SpawnLoc;
+	static FRotator SpawnRot;
+
+	/** Projectile class to spawn */
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+	TSubclassOf<class ACloneCharacter> CloneClass;
 };
 
 

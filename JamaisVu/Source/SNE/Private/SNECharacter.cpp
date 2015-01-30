@@ -2,7 +2,7 @@
 
 #include "SNE.h"
 #include "SNECharacter.h"
-#include "SNEProjectile.h"
+#include "CloneCharacter.h"
 #include "Animation/AnimInstance.h"
 #include <vector>
 
@@ -36,8 +36,7 @@ ASNECharacter::ASNECharacter(const FObjectInitializer& ObjectInitializer)
 	FirstPersonCameraComponent->RelativeLocation = FVector(0, 0, 64.f); // Position the camera
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
-	// Note: The ProjectileClass and the skeletal mesh/anim blueprints for Mesh1P are set in the
-	// derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -47,6 +46,10 @@ void ASNECharacter::SetupPlayerInputComponent(class UInputComponent* InputCompon
 {
 	// set up gameplay key bindings
 	check(InputComponent);
+
+	SpawnLoc = FirstPersonCameraComponent->GetComponentLocation();
+	SpawnRot = FirstPersonCameraComponent->GetComponentRotation();
+	//UE_LOG(LogTemp, Warning, TEXT("MyCharacter's Location is %s"), *SpawnLoc.ToString());
 
 	InputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	InputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);

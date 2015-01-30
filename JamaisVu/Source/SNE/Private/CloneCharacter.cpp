@@ -6,7 +6,8 @@
 #include <vector>
 
 std::vector<ASNECharacter::Key> &inputs = ASNECharacter::inputs;
-
+FRotator ACloneCharacter::SpawnRot;
+FVector ACloneCharacter::SpawnLoc;
 ACloneCharacter::ACloneCharacter(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
@@ -16,9 +17,29 @@ ACloneCharacter::ACloneCharacter(const FObjectInitializer& ObjectInitializer)
 	// set our turn rates for input
 	BaseTurnRate = 45.f;
 	BaseLookUpRate = 45.f;
+	
+	CloneMesh = ObjectInitializer.CreateDefaultSubobject<USkeletalMeshComponent>(this, TEXT("GenericMale"));
+	CloneMesh->AttachParent = GetCapsuleComponent();
+	//CloneMesh->RelativeLocation = FVector(0.f, 0.f, -150.f);
+	CloneMesh->bCastDynamicShadow = false;
+	CloneMesh->CastShadow = false;
+}
+void ACloneCharacter::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+{
+	// set up gameplay key bindings
+	check(InputComponent);
+
+	SpawnLoc = ACloneCharacter::SpawnLoc;
+	UE_LOG(LogTemp, Warning, TEXT("MyCharacter's Location is %s"), *SpawnLoc.ToString());
+	
+
+	/*UWorld* const World = GetWorld();
+	if (World!=NULL){
+	World->SpawnActor<ACloneCharacter>(ACloneCharacter::ACloneCharacter, SpawnLoc, SpawnRot);
+	}
+	*/
 
 }
-
 void ACloneCharacter::Move(FVector direction, float Value)
 {
 	if (Value != 0.0f)
