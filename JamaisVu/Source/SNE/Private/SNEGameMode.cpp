@@ -34,8 +34,8 @@ void ASNEGameMode::StartPlay()
 
 	if (World){
 		//ACloneCharacter* Bot = (ACloneCharacter*)World->SpawnActor(ACloneCharacter::StaticClass(), SpawnLoc, SpawnRot);
-		//ACloneCharacter* Bot = World->SpawnActor<ACloneCharacter>(ACloneCharacter::StaticClass(), SpawnLoc, SpawnRot);
-		ACloneCharacter* Clone = World->SpawnActor<ACloneCharacter>(CloneClass, SpawnLoc, SpawnRot);
+		ACloneCharacter* Bot = World->SpawnActor<ACloneCharacter>(ACloneCharacter::StaticClass(), SpawnLoc, SpawnRot);
+		//ACloneCharacter* Clone = World->SpawnActor<ACloneCharacter>(CloneClass, SpawnLoc, SpawnRot);
 		
 		//jfkh;oer9-=lUE_LOG(LogTemp, Warning, TEXT("Clone's Location is %s"), *(Bot->GetActorClass()).ToString());
 	}
