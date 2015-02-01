@@ -23,7 +23,8 @@ JamaisVu/Intermediate/
 [Rr]eleases/
 x64/
 x86/
-build/
+build/*
+!Application.ico
 bld/
 [Bb]in/
 [Oo]bj/
